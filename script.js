@@ -4,27 +4,28 @@ const addnotebutton = document.querySelector(".addnote")
 const space = document.querySelector(".space")
 const searchbutton = document.querySelector("#searchbutton")
 const crossbutton = document.querySelector(".cross")
+function getitems() {
+    let items = localStorage.getItem("content")
+    if (items) {
+        space.innerHTML = items
+    }
+}
+getitems()
 addnotebutton.addEventListener("click", () => {
     read()
-    create()
     addedtitle.value = ""
     addedtext.value = ""
 })
-
 function read() {
-    localStorage.setItem("titleval", addedtitle.value)
-    localStorage.setItem("textval", addedtext.value)
-}
-function create() {
     let newnote = document.createElement("div")
     newnote.className = "text"
     let newnotetitle = document.createElement("h2")
-    newnotetitle.textContent = localStorage.titleval
     newnotetitle.className = "texttitle"
+    newnotetitle.innerHTML = addedtitle.value
     newnote.appendChild(newnotetitle)
     let newnotetext = document.createElement("p")
     newnotetext.className = "textcontent"
-    newnotetext.textContent = localStorage.textval
+    newnotetext.innerHTML = addedtext.value
     newnote.appendChild(newnotetext)
     let buttons = document.createElement("div")
     buttons.className = "buttonsdiv"
@@ -32,8 +33,8 @@ function create() {
     buttons.innerHTML += "<button class='buttons' onclick='deleteit(this)'><img height='18' width='18' src='icons\\delete_FILL0_wght400_GRAD0_opsz48.png'></button>"
     buttons.innerHTML += "<button class='buttons' onclick='editit(this)'><img height='19' width='19' src='icons\\edit_note_FILL0_wght400_GRAD0_opsz48.png'></button>"
     space.appendChild(newnote)
+    localStorage.setItem("content", space.innerHTML)
 }
-
 const textitledivs = document.getElementsByClassName("texttitle")
 const textcontentdivs = document.getElementsByClassName("textcontent")
 const searchval = document.querySelector("#search")
@@ -60,6 +61,7 @@ crossbutton.addEventListener("click", () => {
 
 function deleteit(e) {
     e.parentElement.parentElement.remove()
+    localStorage.setItem("content", space.innerHTML)
 }
 let addedtitle1 = document.querySelector("#addedtitle1")
 let addedtext1 = document.querySelector("#addedtext1")
@@ -75,5 +77,6 @@ function editit(e) {
         addedtext.value = ""
         document.querySelector(".createnote").style.display = "flex"
         document.querySelector(".editclass").style.display = "none"
+        localStorage.setItem("content", space.innerHTML)
     })
 }
