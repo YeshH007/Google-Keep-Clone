@@ -30,8 +30,8 @@ function read() {
     let buttons = document.createElement("div")
     buttons.className = "buttonsdiv"
     newnote.appendChild(buttons)
-    buttons.innerHTML += "<button class='buttons' onclick='deleteit(this)'><img height='18' width='18' src='icons\\delete_FILL0_wght400_GRAD0_opsz48.png'></button>"
-    buttons.innerHTML += "<button class='buttons' onclick='editit(this)'><img height='19' width='19' src='icons\\edit_note_FILL0_wght400_GRAD0_opsz48.png'></button>"
+    buttons.innerHTML += "<button class='buttons' onclick='deleteit(this)'><img height='18' width='18' src='delete_FILL0_wght400_GRAD0_opsz48.png'></button>"
+    buttons.innerHTML += "<button class='buttons' onclick='editit(this)'><img height='19' width='19' src='edit_note_FILL0_wght400_GRAD0_opsz48.png'></button>"
     space.appendChild(newnote)
     localStorage.setItem("content", space.innerHTML)
 }
